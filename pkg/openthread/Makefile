@@ -1,6 +1,7 @@
 PKG_NAME=openthread
 PKG_URL=https://github.com/openthread/openthread.git
-PKG_VERSION=thread-reference-20180926
+#PKG_VERSION=thread-reference-20180926
+PKG_VERSION=af46ffa53b7d8cf17259dbb15f2b42b0d6573841
 PKG_BUILDDIR ?= $(PKGDIRBASE)/$(PKG_NAME)
 
 ifneq (,$(filter openthread-ftd,$(USEMODULE)))
@@ -18,7 +19,9 @@ ifneq (,$(filter openthread-cli,$(USEMODULE)))
   CLI_ARG = --enable-cli --enable-$(TD)
 endif
 
-OPENTHREAD_ARGS += $(CLI_ARG) $(JOINER_ARG) --enable-application-coap
+#OPENTHREAD_ARGS += $(CLI_ARG) $(JOINER_ARG) --enable-application-coap
+OPENTHREAD_ARGS += --enable-cli --enable-ftd --enable-commissioner --enable-joiner
+
 CONFIG_FILE      = OPENTHREAD_PROJECT_CORE_CONFIG_FILE='\"platform_config.h\"'
 $(info $$OPENTHREAD_ARGS is [${OPENTHREAD_ARGS}])
 
