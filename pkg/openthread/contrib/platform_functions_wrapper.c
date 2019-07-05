@@ -75,6 +75,11 @@ const ot_command_t otCommands[] =
     { "state", &ot_state },
     /* thread: arg "start"/"stop": start/stop thread operation */
     { "thread", &ot_thread },
+    /* udp: arg <pointer to handler>: open udp and bind the message callback to the supplied handler */
+    { "udp_open", &ot_udp_open },
+    /* udp_bind: arg PORT_NUM: binds a p*/
+    { "udp_close", &ot_udp_close },
+
 };
 
 uint8_t ot_exec_command(otInstance *ot_instance, const char* command, void *arg, void* answer) {
