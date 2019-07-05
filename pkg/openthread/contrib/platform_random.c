@@ -16,10 +16,9 @@
  * @}
  */
 
-
 #include <stdint.h>
 
-#include "openthread/platform/entropy.h"
+#include "openthread/platform/random.h"
 #include "periph/cpuid.h"
 #include "random.h"
 
@@ -42,18 +41,6 @@ void ot_random_init(void)
 #endif
 }
 
-
-otError otPlatEntropyGet(uint8_t *aOutput, uint16_t aOutputLength)
-{
-    for (uint16_t index = 0; index < aOutputLength; index++) {
-        aOutput[index] = 0;
-        uint32_t rand_val = random_uint32();
-        aOutput[index] = (uint8_t) rand_val;
-    }
-    return OT_ERROR_NONE;
-}
-
-#ifdef USING_PLATFORM_RANDOM
 /* OpenThread will call this to get a random number */
 uint32_t otPlatRandomGet(void)
 {
@@ -72,5 +59,3 @@ otError otPlatRandomGetTrue(uint8_t *aOutput, uint16_t aOutputLength)
     }
     return OT_ERROR_NONE;
 }
-
-#endif

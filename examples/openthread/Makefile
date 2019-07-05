@@ -4,7 +4,7 @@ APPLICATION = openthread
 BOARD ?= samr21-xpro
 
 # These are the boards that OpenThread stack has been tested on
-BOARD_WHITELIST := samr21-xpro iotlab-m3 fox iotlab-a8-m3 nrf52840 nrf52840-mdk
+BOARD_WHITELIST := samr21-xpro iotlab-m3 fox iotlab-a8-m3 nrf52840dk nrf52840-mdk
 
 # This has to be the absolute path to the RIOT base directory:
 RIOTBASE ?= $(CURDIR)/../..
@@ -31,7 +31,6 @@ USEMODULE += openthread-cli
 #Define PANID, CHANNEL and UART_BAUDRATE used by default
 OPENTHREAD_PANID ?= 0xbeef
 OPENTHREAD_CHANNEL ?= 26
-OPENTHREAD_CONFIG = "openthread-config-nrf.h"
 
 CFLAGS += -DOPENTHREAD_PANID=$(OPENTHREAD_PANID) 
 CFLAGS += -DOPENTHREAD_CHANNEL=$(OPENTHREAD_CHANNEL)
@@ -43,7 +42,7 @@ endif
 ifneq (,$(filter iotlab-m3 fox iotlab-a8-m3,$(BOARD)))
   DRIVER := at86rf231
 endif
-ifneq (,$(filter bt840f,$(BOARD)))
+ifneq (,$(filter nrf52840dk nrf52840-mdk,$(BOARD)))
   DRIVER := nrf802154
   CFLAGS += -DOPENTHREAD_CONFIG_FILE=\"openthread-config-nrf.h\"
 endif
